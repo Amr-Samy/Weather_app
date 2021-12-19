@@ -1,5 +1,5 @@
 
-const FORECAST = 'data/2.5/forecast';
+const WEATHER = 'data/2.5/weather';
 
 
 // {
