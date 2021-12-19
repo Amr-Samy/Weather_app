@@ -16,16 +16,36 @@ class WeatherResponse {
   int timezone;
   @JsonKey(name: "dt")
   int dt;
+  @JsonKey(name: "visibility")
+  int visibility;
+  @JsonKey(name: "sys")
+  SysResponse sys;
 
+  WeatherResponse(this.id, this.cod, this.name, this.base, this.timezone, this.dt, this.visibility, this.sys);
 
-  WeatherResponse({
-    required this.id,
-    required this.cod,
-    required this.name,
-    required this.base,
-    required this.timezone,
-    required this.dt});
   factory WeatherResponse.fromJson(Map<String, dynamic> json) => _$WeatherResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$WeatherResponseToJson(this);
 }
+
+@JsonSerializable()
+class SysResponse {
+  @JsonKey(name: "type")
+  int type;
+  @JsonKey(name: "id")
+  int id;
+  @JsonKey(name: "country")
+  String country;
+  @JsonKey(name: "sunrise")
+  int sunrise;
+  @JsonKey(name: "sunset")
+  int sunset;
+
+
+  SysResponse(this.id, this.type, this.country, this.sunset,this.sunrise);
+
+  factory SysResponse.fromJson(Map<String, dynamic> json) => _$SysResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SysResponseToJson(this);
+}
+

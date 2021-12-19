@@ -22,7 +22,7 @@ class MyHomePage extends StatelessWidget {
 
         return Scaffold(
 
-          body:  Container(
+          body: cubit.weatherModel != null ? Container(
             // decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/bg/night.png",),fit: BoxFit.cover,)),
             child: Stack(
               children: [
@@ -66,7 +66,7 @@ class MyHomePage extends StatelessWidget {
                       children: [
                         Image.asset("assets/images/cloud_moon.png",width: 200,),
 
-                        Text("Alexandria, Egypt",style: TextStyle(color: Colors.white,fontSize: 20),),
+                        Text("${cubit.weatherModel!.name}",style: TextStyle(color: Colors.white,fontSize: 20),),
 
                         Text("Sat, 11 December 8:21 pm",style: TextStyle(color: Colors.white,fontSize: 20),),
 
@@ -75,7 +75,7 @@ class MyHomePage extends StatelessWidget {
                           children: [
                             Image.asset("assets/icons/cloud.png",height: 100,width: 50,),
                             Image.asset("assets/icons/meater.png",height: 100,),
-                            Text("150",style: TextStyle(color: Colors.white,fontSize: 40),),
+                            Text("${cubit.weatherModel!.main.temp}",style: TextStyle(color: Colors.white,fontSize: 40),),
                           ],
                         ),
                         // Text(cubit.weatherModel!.weather[0].main.toString(),style: TextStyle(color: Colors.white,fontSize: 20),),
@@ -240,7 +240,7 @@ class MyHomePage extends StatelessWidget {
 
               ],
             ),
-          ),
+          ) : Center(child: CircularProgressIndicator()),
 
         );
       },

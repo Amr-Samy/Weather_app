@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/models/mapper/mapper.dart';
+import 'package:weather_app/shared/mapper/mapper.dart';
 import '../../../models/response/response.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/network/dio/dio_helper.dart';
@@ -16,7 +16,7 @@ class HomeCubit extends Cubit<HomeStates>{
   static HomeCubit get(context) => BlocProvider.of(context);
   bool expanded = false;
   AnimationController? controller;
-  WeatherModel weatherModel = WeatherModel();
+  WeatherModel? weatherModel;
 
   void getWeather(){
     emit(LoadingState());
@@ -25,16 +25,12 @@ class HomeCubit extends Cubit<HomeStates>{
       "APPID" :"e10e42fb9196d4ab0b93f87d76015ea8" ,
       "units" : "metric",
     }).then((value) {
-      weatherModel = WeatherResponse.fromJson(value.data).toDomain();
+      weatherModel = WeatherModel.fromJson(value.data);
       emit(SuccessState());
-      print("========================================");
-      print(weatherModel.name);
-
     }).catchError((error){
       print(error.toString());
       emit(ErrorState(error.toString()));
     });
-
   }
 
   void expand(){
