@@ -31,8 +31,6 @@ Map<String, dynamic> _$WeatherResponseToJson(WeatherResponse instance) =>
     };
 
 SysResponse _$SysResponseFromJson(Map<String, dynamic> json) => SysResponse(
-      json['id'] as int,
-      json['type'] as int,
       json['country'] as String,
       json['sunset'] as int,
       json['sunrise'] as int,
@@ -40,8 +38,6 @@ SysResponse _$SysResponseFromJson(Map<String, dynamic> json) => SysResponse(
 
 Map<String, dynamic> _$SysResponseToJson(SysResponse instance) =>
     <String, dynamic>{
-      'type': instance.type,
-      'id': instance.id,
       'country': instance.country,
       'sunrise': instance.sunrise,
       'sunset': instance.sunset,

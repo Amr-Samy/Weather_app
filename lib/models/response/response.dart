@@ -30,22 +30,18 @@ class WeatherResponse {
 
 @JsonSerializable()
 class SysResponse {
-  @JsonKey(name: "type")
-  int type;
-  @JsonKey(name: "id")
-  int id;
+  // @JsonKey(name: "type")
+  // dynamic type;
+  // @JsonKey(name: "id")
+  // dynamic id;
   @JsonKey(name: "country")
   String country;
   @JsonKey(name: "sunrise")
   int sunrise;
   @JsonKey(name: "sunset")
   int sunset;
-
-
-  SysResponse(this.id, this.type, this.country, this.sunset,this.sunrise);
-
+  SysResponse(this.country, this.sunset,this.sunrise);
   factory SysResponse.fromJson(Map<String, dynamic> json) => _$SysResponseFromJson(json);
-
   Map<String, dynamic> toJson() => _$SysResponseToJson(this);
 }
 

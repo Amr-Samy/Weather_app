@@ -1,40 +1,38 @@
-// class WeatherModel {
-//   int id;
-//   int cod;
-//   String name;
-//   String base;
-//   int timezone;
-//   int dt;
-//   int visibility;
-//   Sys? sys;
-//
-//   WeatherModel(
-//     this.id,
-//     this.cod,
-//     this.name,
-//     this.base,
-//     this.timezone,
-//     this.dt,
-//     this.visibility,
-//     this.sys,
-//   );
-// }
-//
-// class Sys{
-//   int id;
-//   int type;
-//   String country;
-//   int sunrise;
-//   int sunset;
-//
-//   Sys(
-//     this.id,
-//     this.type,
-//     this.country,
-//     this.sunset,
-//     this.sunrise,
-//   );
-// }
+class WeatherNewModel {
+  int id;
+  int cod;
+  String name;
+  String base;
+  int timezone;
+  int dt;
+  int visibility;
+  SysNewModel? sys;
+
+  WeatherNewModel(
+    this.id,
+    this.cod,
+    this.name,
+    this.base,
+    this.timezone,
+    this.dt,
+    this.visibility,
+    this.sys,
+  );
+}
+
+class SysNewModel{
+
+  String country;
+  int sunrise;
+  int sunset;
+
+  SysNewModel(
+
+    this.country,
+    this.sunset,
+    this.sunrise,
+  );
+}
 
 class WeatherModel {
   WeatherModel({

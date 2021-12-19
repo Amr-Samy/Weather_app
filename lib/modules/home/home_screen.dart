@@ -9,9 +9,7 @@ import 'cubit/states.dart';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
-
 class MyHomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit,HomeStates>(
@@ -19,9 +17,7 @@ class MyHomePage extends StatelessWidget {
       builder: (context,states) {
         var cubit = HomeCubit.get(context);
         double width = MediaQuery.of(context).size.width;
-
         return Scaffold(
-
           body: cubit.weatherModel != null ? Container(
             // decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/bg/night.png",),fit: BoxFit.cover,)),
             child: Stack(

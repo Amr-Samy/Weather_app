@@ -17,6 +17,7 @@ class HomeCubit extends Cubit<HomeStates>{
   bool expanded = false;
   AnimationController? controller;
   WeatherModel? weatherModel;
+  WeatherNewModel? weatherNewModel;
 
   void getWeather(){
     emit(LoadingState());
@@ -26,6 +27,10 @@ class HomeCubit extends Cubit<HomeStates>{
       "units" : "metric",
     }).then((value) {
       weatherModel = WeatherModel.fromJson(value.data);
+      weatherNewModel = WeatherResponse.fromJson(value.data).toDomain();
+      print("========================");
+      print(weatherNewModel?.name);
+      print("========================");
       emit(SuccessState());
     }).catchError((error){
       print(error.toString());

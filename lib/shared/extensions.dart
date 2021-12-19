@@ -22,3 +22,14 @@ extension NotNullInteger on int?{
     }
   }
 }
+// dynamic
+extension NotNullDynamic on dynamic?{
+  dynamic orEmpty(){
+    if(this == null)
+    {
+      return EMPTY;
+    }else{
+      return this!;
+    }
+  }
+}
