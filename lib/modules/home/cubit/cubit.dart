@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/network/dio/dio_helper.dart';
 import 'package:weather_app/network/dio/end_points.dart';
-import 'home_states.dart';
+import 'states.dart';
 
 
 class HomeCubit extends Cubit<HomeStates>{

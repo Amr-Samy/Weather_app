@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/modules/home/home_cubit.dart';
+import 'modules/home/cubit/cubit.dart';
 import 'package:weather_app/shared/components/bloc_observer.dart';
 import 'modules/home/demo.dart';
 import 'modules/home/home_screen.dart';

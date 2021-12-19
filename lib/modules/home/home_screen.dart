@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/shared/components/components.dart';
-import 'home_cubit.dart';
-import 'home_states.dart';
+import 'cubit/cubit.dart';
+import 'cubit/states.dart';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
