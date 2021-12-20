@@ -1,3 +1,5 @@
+import 'package:date_format/date_format.dart';
+import 'package:intl/intl.dart';
 class WeatherNewModel {
   int id;
   int cod;
@@ -65,20 +67,19 @@ class WeatherModel {
   late final dynamic cod;
 
   WeatherModel.fromJson(Map<dynamic, dynamic> json){
-    print(json['id']);
     coord = Coord.fromJson(json['coord']);
-
     weather = List.from(json['weather']).map((e)=>Weather.fromJson(e)).toList();
     base = json['base'];
     main = Main.fromJson(json['main']);
     visibility = json['visibility'];
     wind = Wind.fromJson(json['wind']);
     clouds = Clouds.fromJson(json['clouds']);
-    dt = json['dt'];
+    // Mon, 10 August 11:25 pm
+    dt =DateFormat('EE, dd MMMM hh:mm a	').format(DateTime.now());
     sys = Sys.fromJson(json['sys']);
     timezone = json['timezone'];
     id = json['id'];
-    name = json['name'];
+    name = json['name'].toString().toUpperCase();
     cod = json['cod'];
   }
 }
@@ -220,15 +221,17 @@ class Sys {
   late final dynamic type;
   late final dynamic id;
   late final dynamic country;
-  late final dynamic sunrise;
-  late final dynamic sunset;
+  late final  dynamic  sunrise;
+  late final dynamic  sunset;
 
   Sys.fromJson(Map<dynamic, dynamic> json){
     type = json['type'];
     id = json['id'];
     country = json['country'];
-    sunrise = json['sunrise'];
-    sunset = json['sunset'];
+    var dateSunriseToTimeStamp = DateTime.fromMillisecondsSinceEpoch(json['sunrise'] * 1000);
+    var dateSunsetToTimeStamp = DateTime.fromMillisecondsSinceEpoch(json['sunset'] * 1000);
+    sunrise =DateFormat('hh:MM a').format(dateSunriseToTimeStamp);
+    sunset =DateFormat('hh:MM a').format(dateSunsetToTimeStamp);
   }
 
   Map<dynamic, dynamic> toJson() {

@@ -63,8 +63,8 @@ class MyHomePage extends StatelessWidget {
                         Image.asset("assets/images/cloud_moon.png",width: 200,),
 
                         Text("${cubit.weatherModel!.name}",style: TextStyle(color: Colors.white,fontSize: 20),),
-
-                        Text("Sat, 11 December 8:21 pm",style: TextStyle(color: Colors.white,fontSize: 20),),
+                        // Sat, 11 December 8:21 pm
+                        Text("${cubit.weatherModel!.dt}",style: TextStyle(color: Colors.white,fontSize: 20),),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -94,8 +94,6 @@ class MyHomePage extends StatelessWidget {
                 //       ],
                 //     )
                 // ),
-
-
                 // settings
                 Positioned(
                   left: 10,
@@ -154,9 +152,9 @@ class MyHomePage extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text("5:05 am",style: TextStyle(color: Colors.white,fontSize: 15),),
-                                    Text("12 kph",style: TextStyle(color: Colors.white,fontSize: 15),),
-                                    Text("5:35 pm",style: TextStyle(color: Colors.white,fontSize: 15),),
+                                    Text("${cubit.weatherModel!.sys.sunset}",style: TextStyle(color: Colors.white,fontSize: 15),),
+                                    Text("${cubit.weatherModel!.wind.speed}",style: TextStyle(color: Colors.white,fontSize: 15),),
+                                    Text("${cubit.weatherModel!.sys.sunrise}",style: TextStyle(color: Colors.white,fontSize: 15),),
                                   ],
                                 ),
 
