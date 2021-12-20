@@ -64,8 +64,12 @@ class MyHomePage extends StatelessWidget {
 
                         Text("${cubit.weatherModel!.name}",style: TextStyle(color: Colors.white,fontSize: 20),),
                         // Sat, 11 December 8:21 pm
-                        Text("${cubit.weatherModel!.dt}",style: TextStyle(color: Colors.white,fontSize: 20),),
-
+                        // StreamBuilder(
+                        //   stream:getTime,
+                        //   initialData: cubit.weatherModel!.dt,
+                        //   builder: (context,snapshot) => Text("${cubit.weatherModel!.dt}",style: TextStyle(color: Colors.white,fontSize: 20),),
+                        // ),
+                        Text(cubit.timeNow,style: TextStyle(color: Colors.white,fontSize: 20),),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -500,4 +504,5 @@ Widget buildSheet(BuildContext context,HomeCubit cubit) {
       ),
     ],
   );
+
 }

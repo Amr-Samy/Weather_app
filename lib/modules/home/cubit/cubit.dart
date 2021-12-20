@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/shared/mapper/mapper.dart';
 import '../../../models/response/response.dart';
 import 'package:weather_app/models/weather_model.dart';
@@ -42,6 +45,22 @@ class HomeCubit extends Cubit<HomeStates>{
     expanded = !expanded;
     emit(ExpandState());
   }
+  String timeNow = DateFormat('EE, dd MMMM hh:mm a	').format(DateTime.now());
+  void time() async{
+    getTime().listen((value) {
+      timeNow = DateFormat('EE, dd MMMM hh:mm a	').format(DateTime.now());
 
+    });
+
+  }
+  Stream<DateTime> getTime() async* {
+    DateTime currentTime = DateTime.now();
+    while (true) {
+      await Future.delayed(Duration(minutes: 1));
+      yield currentTime;
+      emit(changeTimeState());
+    }
+
+  }
 
 }
