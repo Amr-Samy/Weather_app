@@ -12,3 +12,10 @@ class ErrorState extends HomeStates{
   ErrorState(this.error);
 }
 
+// days forecast
+class WeatherDaysForecastLoadingState extends HomeStates{}
+class WeatherDaysForecastSuccessState extends HomeStates{}
+class WeatherDaysForecastErrorState extends HomeStates{
+  final String error ;
+  WeatherDaysForecastErrorState(this.error);
+}

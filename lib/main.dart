@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create:(context)=> HomeCubit()..getWeather()..time()),
+        BlocProvider(create:(context)=> HomeCubit()..getWeather()..time()..getWeatherDaysForecast(12,type: "hours")),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
