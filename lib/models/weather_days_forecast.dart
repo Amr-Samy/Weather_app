@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 /// cod : "200"
 /// message : 0
 /// cnt : 40
@@ -151,7 +153,9 @@ class ListData {
       this.dtTxt,});
 
   ListData.fromJson(dynamic json) {
-    dt = json['dt'];
+    var dateTimeToTimeStamp = DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000);
+    dt =DateFormat('hh:MM a').format(dateTimeToTimeStamp);
+
     main = json['main'] != null ? Main.fromJson(json['main']) : null;
     if (json['weather'] != null) {
       weather = [];
@@ -167,7 +171,7 @@ class ListData {
     sys = json['sys'] != null ? Sys.fromJson(json['sys']) : null;
     dtTxt = json['dt_txt'];
   }
-  int? dt;
+  dynamic dt;
   Main? main;
   List<Weather>? weather;
   Clouds? clouds;
