@@ -33,6 +33,7 @@ class HomeCubit extends Cubit<HomeStates>{
     }).then((value) {
       weatherModel = WeatherModel.fromJson(value.data);
       weatherNewModel = WeatherResponse.fromJson(value.data).toDomain();
+      background(sunrise: weatherModel!.sys.sunriseWithoutFormat,sunset:weatherModel!.sys.sunsetWithoutFormat );
       emit(SuccessState());
     }).catchError((error){
       print(error.toString());
@@ -55,18 +56,13 @@ class HomeCubit extends Cubit<HomeStates>{
   }
   //  Date now stram
   Stream<DateTime> getTime() async* {
-    DateTime currentTime = DateTime.now();
     while (true) {
       await Future.delayed(Duration(minutes: 1));
-      yield currentTime;
+      yield DateTime.now();
       emit(changeTimeState());
     }
   }
   // End Dates formatted
-
-
-
-
 
   List<ListData> myListForecast =[];
 
@@ -122,4 +118,45 @@ class HomeCubit extends Cubit<HomeStates>{
 
   }
   // End Weather days forecast
+
+
+  String BgAssetPath = "assets/images/bg/night1.png";
+
+  // start Get Background check
+  void background({DateTime? sunrise, DateTime? sunset}) async{
+    getBackground().listen((value) {
+      DateTime dt = value;
+      DateTime sunrise_plus_hour = sunrise!.add(const Duration(hours: 1));
+      DateTime sunset_plus_hour = sunset!.add(const Duration(hours: 1));
+
+      // positive value greater and negative value being less
+      // first condition sunrise
+      if(dt.compareTo(sunrise) > 0 && dt.compareTo(sunrise_plus_hour) < 0){
+        BgAssetPath = "assets/images/bg/morning1.png";
+      }
+      // morning
+      else if(dt.compareTo(sunrise_plus_hour) > 0 && dt.compareTo(sunset) < 0){
+        BgAssetPath = "assets/images/bg/morning2.png";
+      }
+      // sunset time
+      else if(dt.compareTo(sunset) > 0 && dt.compareTo(sunset_plus_hour) < 0){
+        BgAssetPath = "assets/images/bg/night.png";
+      }
+      // night
+      else if(dt.compareTo(sunset_plus_hour) > 0 && dt.compareTo(sunrise) < 0){
+        BgAssetPath = "assets/images/bg/night1.png";
+      }
+
+    });
+  }
+  //  Background  stream
+  Stream<DateTime> getBackground() async* {
+    while (true) {
+      await Future.delayed(const Duration(seconds: 1));
+      yield DateTime.now();
+      emit(ChangeBackgroundState());
+
+    }
+  }
+// End Dates formatted
 }

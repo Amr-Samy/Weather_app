@@ -28,7 +28,7 @@ class MyHomePage extends StatelessWidget {
                   child: Container(
                     decoration:  BoxDecoration(
                       image:  DecorationImage(
-                        image: AssetImage("assets/images/bg/night.png"),
+                        image: AssetImage("${cubit.BgAssetPath.toString()}"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -46,7 +46,7 @@ class MyHomePage extends StatelessWidget {
                   child: Container(
                     decoration:  BoxDecoration(
                       image:  DecorationImage(
-                        image: AssetImage("assets/images/bg/night.png"),
+                        image: AssetImage("${cubit.BgAssetPath.toString()}"),
                         fit: BoxFit.cover,
                       ),
                     ),

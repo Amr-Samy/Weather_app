@@ -216,13 +216,17 @@ class Sys {
     required this.id,
     required this.country,
     required this.sunrise,
+    required this.sunriseWithoutFormat,
     required this.sunset,
+    required this.sunsetWithoutFormat,
   });
   late final dynamic type;
   late final dynamic id;
   late final dynamic country;
   late final  dynamic  sunrise;
   late final dynamic  sunset;
+  late final dynamic  sunsetWithoutFormat;
+  late final dynamic  sunriseWithoutFormat;
 
   Sys.fromJson(Map<dynamic, dynamic> json){
     type = json['type'];
@@ -232,6 +236,9 @@ class Sys {
     var dateSunsetToTimeStamp = DateTime.fromMillisecondsSinceEpoch(json['sunset'] * 1000);
     sunrise =DateFormat('hh:MM a').format(dateSunriseToTimeStamp);
     sunset =DateFormat('hh:MM a').format(dateSunsetToTimeStamp);
+    sunsetWithoutFormat = dateSunsetToTimeStamp;
+    sunriseWithoutFormat = dateSunriseToTimeStamp;
+
   }
 
   Map<dynamic, dynamic> toJson() {
