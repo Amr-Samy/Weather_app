@@ -80,7 +80,7 @@ class HomeCubit extends Cubit<HomeStates>{
       // print(weatherDaysForecastModel!.list!.length);
 
       // hours per day
-      double hours = getHoursOfDay(hoursCount,type: "hours");
+      double hours = getHoursOfDay(hoursCount,type: type);
 
       for(int i = 0;i <= weatherDaysForecastModel!.list!.length;i++)
       {

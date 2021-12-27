@@ -3,6 +3,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/modules/home/forecast_sheet.dart';
 import 'package:weather_app/shared/components/components.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
@@ -75,7 +76,7 @@ class MyHomePage extends StatelessWidget {
                           children: [
                             Image.asset("assets/icons/cloud.png",height: 100,width: 50,),
                             Image.asset("assets/icons/meater.png",height: 100,),
-                            Text("${cubit.weatherModel!.main.temp}",style: TextStyle(color: Colors.white,fontSize: 40),),
+                            Text("${cubit.weatherModel!.main.temp}°ᶜ",style: TextStyle(color: Colors.white,fontSize: 40),),
                           ],
                         ),
                         // Text(cubit.weatherModel!.weather[0].main.toString(),style: TextStyle(color: Colors.white,fontSize: 20),),
@@ -170,7 +171,15 @@ class MyHomePage extends StatelessWidget {
                                       Hero(
                                         tag: 't_button',
                                         child: DefaultButton(
-                                            function: (){},
+                                            function: (){
+                                              cubit.getWeatherDaysForecast(1);
+                                              showModalBottomSheet(context: context,
+                                                builder: (context) => buildForecastSheet(context,cubit),
+                                                isScrollControlled: true,
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
+                                                backgroundColor: Colors.blueGrey.withOpacity(0.5),
+                                              );
+                                            },
                                             text: "Tomorrow's Forecast",
                                           // width: 200,
                                           // bgColor: 0xFF324B4F,
@@ -183,7 +192,7 @@ class MyHomePage extends StatelessWidget {
                                         tag: 'd_button',
                                         child: DefaultButton(
                                           function: (){},
-                                          text: "7 Days Forecast",
+                                          text: "5 Days Forecast",
                                           width: 200,
                                           // bgColor: 0xFF324B4F,
                                         ),
@@ -504,5 +513,4 @@ Widget buildSheet(BuildContext context,HomeCubit cubit) {
       ),
     ],
   );
-
 }
