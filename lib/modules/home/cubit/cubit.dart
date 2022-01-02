@@ -159,7 +159,7 @@ class HomeCubit extends Cubit<HomeStates>{
   //  Background  stream
   Stream<DateTime> getBackground() async* {
     while (true) {
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(minutes: 1));
       yield DateTime.now();
       emit(ChangeBackgroundState());
     }
