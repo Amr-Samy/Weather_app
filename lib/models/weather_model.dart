@@ -122,7 +122,7 @@ class Weather {
     id = json['id'];
     main = json['main'];
     description = json['description'];
-    icon = json['icon'];
+    icon = "http://openweathermap.org/img/wn/${json['icon']}.png";
   }
 
   Map<dynamic, dynamic> toJson() {

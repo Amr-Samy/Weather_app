@@ -61,44 +61,28 @@ class MyHomePage extends StatelessWidget {
                   child: Center(
                     child: Column(
                       children: [
-                        Image.asset("assets/images/cloud_moon.png",width: 200,),
+                        Stack(
+                          children: [
+                            Image.asset(cubit.SunMoonAssetPath,width: 200,),
+                          ],
+                        ),
 
                         Text("${cubit.weatherModel!.name}",style: TextStyle(color: Colors.white,fontSize: 20),),
-                        // Sat, 11 December 8:21 pm
-                        // StreamBuilder(
-                        //   stream:getTime,
-                        //   initialData: cubit.weatherModel!.dt,
-                        //   builder: (context,snapshot) => Text("${cubit.weatherModel!.dt}",style: TextStyle(color: Colors.white,fontSize: 20),),
-                        // ),
                         Text(cubit.timeNow,style: TextStyle(color: Colors.white,fontSize: 20),),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset("assets/icons/cloud.png",height: 100,width: 50,),
+                            Image.network("${cubit.weatherModel!.weather[0].icon}",height: 100,width: 50,),
                             Image.asset("assets/icons/meater.png",height: 100,),
                             Text("${cubit.weatherModel!.main.temp}°ᶜ",style: TextStyle(color: Colors.white,fontSize: 40),),
                           ],
                         ),
                         // Text(cubit.weatherModel!.weather[0].main.toString(),style: TextStyle(color: Colors.white,fontSize: 20),),
-
                       ],
                     ),
                   ),
                 ),
 
-                // Positioned(
-                //   top: 120,
-                //     child: Stack(
-                //       children: [
-                //         MovingCloud(image: 'assets/images/nightcloud/ncloud1.png', reverse: false, autoPlay_duration: 4000,animation_duration: 4000),
-                //         // MovingCloud(image: 'assets/images/nightcloud/ncloud2.png', reverse: false, autoPlay_duration: 3000,animation_duration: 3000),
-                //         // MovingCloud(image: 'assets/images/nightcloud/ncloud3.png', reverse: false, autoPlay_duration: 2000,animation_duration: 2000),
-                //         MovingCloud(image: 'assets/images/nightcloud/ncloud4.png', reverse: true, autoPlay_duration: 2000,animation_duration: 2000),
-                //         MovingCloud(image: 'assets/images/nightcloud/ncloud2.png', reverse: true, autoPlay_duration: 2000,animation_duration: 2000),
-                //         MovingCloud(image: 'assets/images/nightcloud/ncloud1.png', reverse: true, autoPlay_duration: 3000,animation_duration: 3000),
-                //       ],
-                //     )
-                // ),
                 // settings
                 Positioned(
                   left: 10,
@@ -122,7 +106,6 @@ class MyHomePage extends StatelessWidget {
                       child: Stack(
                         clipBehavior: Clip.none,
                         children: [
-
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.grey.withOpacity(.9),

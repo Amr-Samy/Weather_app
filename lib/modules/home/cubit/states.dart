@@ -6,6 +6,7 @@ class ExpandState extends HomeStates{}
 
 class changeTimeState extends HomeStates{}
 class ChangeBackgroundState extends HomeStates{}
+class ChangeSunMoonState extends HomeStates{}
 
 class LoadingState extends HomeStates{}
 class SuccessState extends HomeStates{}

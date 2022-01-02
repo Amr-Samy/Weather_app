@@ -33,7 +33,7 @@ class HomeCubit extends Cubit<HomeStates>{
     }).then((value) {
       weatherModel = WeatherModel.fromJson(value.data);
       weatherNewModel = WeatherResponse.fromJson(value.data).toDomain();
-      background(sunrise: weatherModel!.sys.sunriseWithoutFormat,sunset:weatherModel!.sys.sunsetWithoutFormat );
+      background(sunrise: weatherModel!.sys.sunriseWithoutFormat,sunset:weatherModel!.sys.sunsetWithoutFormat);
       emit(SuccessState());
     }).catchError((error){
       print(error.toString());
@@ -119,32 +119,39 @@ class HomeCubit extends Cubit<HomeStates>{
   }
   // End Weather days forecast
 
-
-  String BgAssetPath = "assets/images/bg/night1.png";
+  // String BgAssetPath = "assets/images/bg/night1.png";
+  // String BgAssetPath = "assets/images/bg/night1.png";
+  String BgAssetPath = "assets/images/bg/morning1.png";
+  String CloudAssetPath = "assets/images/nightcloud/ncloud1.png";
+  String  SunMoonAssetPath = "assets/images/Ellipse2.png";
 
   // start Get Background check
   void background({DateTime? sunrise, DateTime? sunset}) async{
     getBackground().listen((value) {
-      DateTime dt = value;
+
       DateTime sunrise_plus_hour = sunrise!.add(const Duration(hours: 1));
       DateTime sunset_plus_hour = sunset!.add(const Duration(hours: 1));
-
       // positive value greater and negative value being less
+
       // first condition sunrise
-      if(dt.compareTo(sunrise) > 0 && dt.compareTo(sunrise_plus_hour) < 0){
+      if(value.compareTo(sunrise) > 0 && value.compareTo(sunrise_plus_hour) < 0){
         BgAssetPath = "assets/images/bg/morning1.png";
+        SunMoonAssetPath = "assets/images/Ellipse2.png";
       }
       // morning
-      else if(dt.compareTo(sunrise_plus_hour) > 0 && dt.compareTo(sunset) < 0){
+      else if(value.compareTo(sunrise_plus_hour) > 0 && value.compareTo(sunset) < 0){
         BgAssetPath = "assets/images/bg/morning2.png";
+        SunMoonAssetPath = "assets/images/Ellipse1.png";
       }
       // sunset time
-      else if(dt.compareTo(sunset) > 0 && dt.compareTo(sunset_plus_hour) < 0){
+      else if(value.compareTo(sunset) > 0 && value.compareTo(sunset_plus_hour) < 0){
         BgAssetPath = "assets/images/bg/night.png";
+        SunMoonAssetPath = "assets/images/mooon.png";
       }
       // night
-      else if(dt.compareTo(sunset_plus_hour) > 0 && dt.compareTo(sunrise) < 0){
+      else if(value.compareTo(sunset_plus_hour) > 0){
         BgAssetPath = "assets/images/bg/night1.png";
+        SunMoonAssetPath = "assets/images/mooon.png";
       }
 
     });
@@ -155,7 +162,6 @@ class HomeCubit extends Cubit<HomeStates>{
       await Future.delayed(const Duration(seconds: 1));
       yield DateTime.now();
       emit(ChangeBackgroundState());
-
     }
   }
 // End Dates formatted
